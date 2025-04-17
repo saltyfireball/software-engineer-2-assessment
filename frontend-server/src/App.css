@@ -1,0 +1,51 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  height: 100%;
+  align-self: flex-start;
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 400px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.message {
+  align-self: center;
+  text-align: left;
+  border: 1px;
+  border-color: grey;
+  border-style: solid;
+  margin: 5px;
+  padding: 2px;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 400px;
+}
+
+ol {
+  list-style-type: none;
+  padding-left: 0px;
+}
