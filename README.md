@@ -19,14 +19,14 @@ PUT    127.0.0.1:8000/messages/:message_id    // Update an existing message
 
 2. Include a local database solution such as sqlite3 to store messages.
 
-3. The API server's code is well documented. Each function should include a docstring. Comments are included where necessary.
-
 
 ### Frontend Server
 The frontend server is provided for you. It includes requests to the endpoints required by the API server already. You should not need to make any changes to any files within the "frontend-server" folder.
 
 
-### Documentation
-Include in your solution a markdown file titled "REPORT.md" detailing the following:
-1. How could you test this product?
-2. What would you do differently, given more time and/or resources?
+# Documentation Requirements
+1. The API server's code is well documented. Each function should include a docstring. Comments are included where necessary.
+
+2. Include in your solution a markdown file titled "REPORT.md" detailing the following:
+    1. How could you test this product?
+    2. What would you do differently, given more time and/or resources?
