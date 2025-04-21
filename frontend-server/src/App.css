@@ -29,6 +29,10 @@
 }
 
 .message {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   align-self: center;
   text-align: left;
   border: 1px;

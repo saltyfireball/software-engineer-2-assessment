@@ -7,13 +7,19 @@ function App() {
   const [error, setError] = useState<boolean>(false)
 
   const handleSubmit = () => {
+    // your code here
     if (message === "") {
       setError(true)
+
     } else {
       setMessages(oldMessages => [message, ...oldMessages])
       setMessage("")
       setError(false)
     }
+  }
+
+  const deleteMessage = () => {
+    // your code here
   }
 
   return (
@@ -22,7 +28,10 @@ function App() {
         <h3>Messages</h3>
         <ol>
           {messages.map(msg => (
-            <li className="message" key={msg}>{msg}</li>
+            <li className="message" key={msg}>
+              <button onClick={deleteMessage}>❌</button>
+              {msg}
+            </li>
           ))}
         </ol>
       </div>
