@@ -6,19 +6,19 @@ function App() {
   const [message, setMessage] = useState<string>("")
   const [error, setError] = useState<boolean>(false)
 
-  const handleSubmit = () => {
+  const submitMessage = () => {
     // your code here
-    if (message === "") {
-      setError(true)
-
-    } else {
-      setMessages(oldMessages => [message, ...oldMessages])
-      setMessage("")
-      setError(false)
-    }
   }
 
   const deleteMessage = () => {
+    // your code here
+  }
+
+  const moveMessageUp = () => {
+    // your code here
+  }
+
+  const moveMessageDown = () => {
     // your code here
   }
 
@@ -29,7 +29,13 @@ function App() {
         <ol>
           {messages.map(msg => (
             <li className="message" key={msg}>
-              <button onClick={deleteMessage}>❌</button>
+              <div className="button-group">
+                <button onClick={deleteMessage}>❌</button>
+                <div className="button-column-group">
+                  <button onClick={moveMessageUp}>🔼</button>
+                  <button onClick={moveMessageDown}>🔽</button>
+                </div>
+              </div>
               {msg}
             </li>
           ))}
@@ -39,7 +45,7 @@ function App() {
         <h3>Submit a new message</h3>
         <div className="input-group">
           <input value={message} onChange={(e) => setMessage(e.target.value)} />
-          <button onClick={handleSubmit}>submit</button>
+          <button onClick={submitMessage}>submit</button>
           <p style={{color: "hotPink", visibility: error? "visible": "hidden"}}>Message can not be empty</p>
         </div>
       </div>

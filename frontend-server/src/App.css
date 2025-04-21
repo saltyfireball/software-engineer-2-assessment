@@ -53,3 +53,13 @@ ol {
   list-style-type: none;
   padding-left: 0px;
 }
+
+.button-column-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-group {
+  display: flex;
+  justify-self: flex-start;
+}
