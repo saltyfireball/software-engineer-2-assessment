@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
-function App() {w
+function App() {
   const [messages, setMessages] = useState<string[]>(["test", "a", "b", "c"])
   const [message, setMessage] = useState<string>("")
   const [error, setError] = useState<boolean>(false)
