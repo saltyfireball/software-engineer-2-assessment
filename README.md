@@ -19,16 +19,20 @@ DELETE 127.0.0.1:8000/messages/:message_id    // Delete an existing message
 PUT    127.0.0.1:8000/messages/:message_id    // Update an existing message
 ```
 
-2. Include a local database solution such as sqlite3 to store messages.
+2. Include a local database solution such as sqlite3 to store messages. You may use any libraries you like such as django, fastapi, etc.
+
+3. Please provide a requirements.txt file and build instructions. Using a virtual environment during development is highly recommended.
 
 
 ### Frontend Server
-The frontend server is provided for you. It includes requests to the endpoints required by the API server already. You should not need to make any changes to any files within the "frontend-server" folder.
+The frontend server render and styling is provided for you. You will need to handle database queries and state management.
+
+1. You will implement message creation, order modification, and deletion. Stubs have been left in App.tsx for you.
+
+2. The state of messages is synced with the database such that updates to the messages are preserved after page refreshes.
+
+3. If you really really want to style the frontend, you may. But do 
 
 
 # Documentation Requirements
-1. The API server's code is well documented. Each function should include a docstring. Comments are included where necessary.
-
-2. Include in your solution a markdown file titled "REPORT.md" detailing the following:
-    1. How could you test this product?
-    2. What would you do differently, given more time and/or resources?
+1. All code written is well documented.
