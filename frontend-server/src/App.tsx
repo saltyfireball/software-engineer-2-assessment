@@ -1,26 +1,42 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
-function App() {
+function App() {w
   const [messages, setMessages] = useState<string[]>(["test", "a", "b", "c"])
   const [message, setMessage] = useState<string>("")
   const [error, setError] = useState<boolean>(false)
 
+  // Welcome!
+  // Edit the below functions to make the application functional.
+  // Remember, updates to messages must be persisted across page refreshes.
+  // That means syncing the order of messages, new messages, etc. with
+  // the api server after every operation.
+  // Finally, you should not need to make any changes to the rendering/styling
+  // of the application.
+
+  useEffect(() => {
+    // Fetch the initial message list from the api server and set the messages state
+  })
+
   const submitMessage = () => {
     // your code here
+    // validate the message, update the messages state and sync with api server
   }
 
   const deleteMessage = () => {
     // your code here
+    // delete the message and sync with the api server
   }
 
   const moveMessageUp = () => {
     // your code here
+    // move the message up by one and sync new message order with api server
   }
 
   const moveMessageDown = () => {
     // your code here
-  }
+    // move the message down by one and sync new message order with api server
+  } 
 
   return (
     <div className="container">
