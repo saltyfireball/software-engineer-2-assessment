@@ -136,15 +136,3 @@ def update_message(message_id: int, message: MessageUpdate):
         "content": db_message.content,
         "order": db_message.order
     }
-
-# Optional example to bulk reorder the messages
-@app.put("/messages/reorder")
-def reorder_messages(message_list: List[MessageReorder]):
-    db = SessionLocal()
-    for item in message_list:
-        msg = db.query(Message).filter(Message.id == item.id).first()
-        if msg:
-            msg.order = item.order
-    db.commit()
-    db.close()
-    return {"detail": "Messages reordered successfully"}

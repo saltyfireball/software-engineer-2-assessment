@@ -47,3 +47,118 @@ The frontend server render and styling is provided for you. You will need to han
 
 # Documentation Requirements
 1. Please comment your code.
+---
+# Candidate Submission Notes
+
+## Implementation Overview
+
+- **Backend**: Implemented with FastAPI and SQLite, using SQLAlchemy ORM for database management.
+- **Frontend**: Integrated with React using `fetch` for API communication.
+- **State Management**: Message creation, deletion, and reordering are fully implemented and kept in sync with the API.
+- **Persistence**: Message order is preserved across page refreshes by syncing with the backend database.
+
+---
+
+## How to Run the Project
+
+### Install Dependencies
+
+If using the provided DevContainer setup, backend dependencies will be installed automatically via the `postCreateCommand` defined in `.devcontainer/devcontainer.json`:
+
+```json
+"postCreateCommand": "pip install -r api-server/requirements.txt"
+```
+
+If not using DevContainers, install the dependencies manually:
+
+```bash
+cd api-server
+pip install -r requirements.txt
+```
+
+---
+
+### Running the API Server
+
+Start the FastAPI server locally:
+
+```bash
+cd api-server
+uvicorn main:app --reload --host 127.0.0.1 --port 8000
+```
+
+Once running, the API will be available at `http://127.0.0.1:8000/`.  
+You can explore it interactively via Swagger UI at `http://127.0.0.1:8000/docs`.
+
+---
+
+### One-Command Start (Optional)
+
+To run both the frontend and backend simultaneously:
+
+#### Mac/Linux/DevContainer:
+
+```bash
+chmod +x start-dev.sh
+./start-dev.sh
+```
+
+#### Windows:
+
+```cmd
+start-dev.bat
+```
+
+---
+
+## Additional Notes
+
+- All code is commented to clarify functionality and design decisions.
+- Reordering messages currently uses multiple sequential `PUT` requests. In a production scenario, this could be optimized using a bulk reorder endpoint.
+
+### Example bulk order main.py
+```python
+# Example to bulk reorder the messages
+@app.put("/messages/reorder")
+def reorder_messages(message_list: List[MessageReorder]):
+    db = SessionLocal()
+    for item in message_list:
+        msg = db.query(Message).filter(Message.id == item.id).first()
+        if msg:
+            msg.order = item.order
+    db.commit()
+    db.close()
+    return {"detail": "Messages reordered successfully"}
+```
+
+### Example Bulk order App.tsx
+```typescript
+  const moveMessage = async (index: number, direction: "up" | "down") => {
+    const updated = [...messages]
+
+    if (direction === "up") {
+      if (index === 0) return
+      [updated[index - 1], updated[index]] = [updated[index], updated[index - 1]]
+    }
+
+    if (direction === "down") {
+      if (index === updated.length - 1) return
+      [updated[index], updated[index + 1]] = [updated[index + 1], updated[index]]
+    }
+
+    // Reassign local order numbers
+    const reordered = updated.map((msg, idx) => ({
+      id: msg.id,
+      order: idx
+    }))
+
+    // Send bulk reorder request
+    await fetch("http://127.0.0.1:8000/messages/reorder", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(reordered)
+    })
+
+    setMessages(updated)
+  }
+```
